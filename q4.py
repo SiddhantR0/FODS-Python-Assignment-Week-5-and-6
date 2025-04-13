@@ -6,7 +6,7 @@ of the csv file in a tabular format.
 # importing csv 
 # and tabulate module using pip
 import csv
-from tabulate import tabulate
+from tabulate import tabulate 
 
 # file handling part 
 def read_csv_and_display(file_name):

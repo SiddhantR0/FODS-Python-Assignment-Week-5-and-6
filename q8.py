@@ -3,8 +3,10 @@ This is a very flexible library management system. This program allows the user 
 check the availability of the book, search for a book, add a book. Progam has clean UI so the user can navigate properely.
 Features of OOP and other concept of programming has been used to develop this program.
 '''
-
+# imports csv module
 import csv
+
+# import os module
 import os
 
 class Book:
@@ -21,7 +23,8 @@ class Library:
     def __init__(self, filename="question8books.csv"):
         self.filename = filename
         self.books = self.load_books()
-
+        
+    # function to load the books
     def load_books(self):
         books = []
         try:
@@ -34,7 +37,7 @@ class Library:
         except FileNotFoundError:
             pass 
         return books
-
+    # function to save books
     def save_books(self):
         try:
             with open(self.filename, "w", newline="") as file:
@@ -44,11 +47,13 @@ class Library:
         except Exception as e:
             print(f"Error saving to file: {e}")
 
+    # function for adding books
     def add_book(self, book_id, title, author):
         self.books.append(Book(book_id, title, author))
         self.save_books()
         print("Book added successfully!")
-
+        
+    # function for borrowing books
     def borrow_book(self, book_id):
         for book in self.books:
             if book.book_id == book_id:
@@ -61,6 +66,7 @@ class Library:
                 return
         print("Book not found.")
 
+    # function for returning books
     def return_book(self, book_id):
         for book in self.books:
             if book.book_id == book_id:
@@ -72,7 +78,8 @@ class Library:
                     print(f"'{book.title}' was not borrowd.")
                 return
         print("Book not found.")
-
+        
+    # function to search for books
     def search_book(self, keyword):
         found_books = [book for book in self.books if keyword.lower() in book.title.lower() or keyword.lower() in book.author.lower()]
         if found_books:
@@ -84,6 +91,7 @@ class Library:
         else:
             print("No books found matching the search criteria.")
 
+    # function for displaying books
     def display_books(self):
         if not self.books:
             print("No books available in the library.")
@@ -97,6 +105,7 @@ class Library:
 
 library = Library()
 
+# UI for easy navigation
 while True:
     print("\nLibrary Management System")
     print("1. Add Book")

@@ -6,6 +6,7 @@ employees as well as their details.
 
 import csv
 
+# function for employee details
 class Employee:
     def __init__(self, empid, name, address, contact_number, spouse_name, number_of_child, salary):
         self.empid = empid
@@ -19,6 +20,7 @@ class Employee:
     def to_list(self):
         return [self.empid, self.name, self.address, self.contact_number, self.spouse_name, self.number_of_child, self.salary]
 
+# function to add employees
 def add_employee():
     employees = []
     while True:
@@ -49,6 +51,7 @@ def add_employee():
     except Exception as e:
         print(f"Error saving to file: {e}")
 
+# function to show the list / specific emplyee details
 def display_employees():
     try:
         with open("question7employees.csv", "r") as file:
@@ -67,9 +70,11 @@ def display_employees():
             for emp in employees:
                 print("{:<10} {:<20} {:<20} {:<15} {:<15} {:<10} {:<10}".format(*emp))
 
+    # error handling
     except FileNotFoundError:
         print("No employee records found.")
 
+# UI for easier navigation 
 while True:
     print("\nEmployee Management System")
     print("1. Add Employee")
